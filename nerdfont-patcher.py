@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/python
 
 import os
@@ -51,7 +52,7 @@ def patch(folder, name):
         if not ["ttf", "otf"] in fonts[i]:
             continue
 
-        # ¯\_(ツ)_/¯
+        # "¯\_(ツ)_/¯"
         font_path = folder + os.sep + fonts[i]
 
         # This will patch everything. Powerline, Weather FontAwesome... EVERYTHING!
