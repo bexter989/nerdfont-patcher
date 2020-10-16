@@ -3,6 +3,7 @@
 
 import os
 import sys
+from sys import platform
 
 
 def folder_exists(folder):
@@ -57,8 +58,13 @@ def patch(folder, name):
 
         # This will patch everything. Powerline, Weather FontAwesome... EVERYTHING!
         # It takes a while to patch sh get a coffee and relax
-        command = "fontforge -script font-patcher -s -w -c --no-progressbars --careful {} -out Patched/{}".format(
-            font_path, name)
+
+        if platform == "linux" or platform == "linux2" or platform == "darwin":
+            command = "fontforge -script font-patcher -s -c --no-progressbars --careful {} -out Patched/{}".format(
+                font_path, name)
+        else:
+            command = "fontforge-console -script font-patcher -s -w -c --no-progressbars --careful {} -out Patched/{}".format(
+                font_path, name)
         os.system(
             command
         )
