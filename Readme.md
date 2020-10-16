@@ -26,4 +26,4 @@ Eg:
 $ ./nerdfont-patcher.py ./ttf VictorMono
 ```
 
-> Patched fonts are generate in the "Patched" folder under the font name you specified
+> Patched fonts are generated in the "Patched" folder under the font name you specified
