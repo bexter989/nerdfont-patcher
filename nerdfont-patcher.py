@@ -3,7 +3,6 @@
 
 import os
 import sys
-from sys import platform
 
 
 def folder_exists(folder):
@@ -53,21 +52,15 @@ def patch(folder, name):
         if not ".ttf" or ".otf" in fonts[i]:
             continue
 
-        # "¯\_(ツ)_/¯"
+        # Font path "¯\_(ツ)_/¯"
         font_path = folder + os.sep + fonts[i]
 
         # This will patch everything. Powerline, Weather FontAwesome... EVERYTHING!
-        # It takes a while to patch sh get a coffee and relax
-
-        if platform == "linux" or platform == "linux2" or platform == "darwin":
-            command = "fontforge -script ./font-patcher -s -c --no-progressbars --careful {} -out Patched/{}".format(
-                font_path, name)
-        else:
-            command = "fontforge -script .\\font-patcher -s -w -c --no-progressbars --careful {} -out Patched/{}".format(
-                font_path, name)
-        os.system(
-            command
-        )
+        # It takes a while to patch fonts so get a coffee while waiting. Oh! and the '-w 'switch is for
+        # Windows compatibility.. Something about limiting the number of characters in the font name.
+        command = "fontforge -script .\\font-patcher -s -w -c --no-progressbars --careful {} -out Patched/{}".format(
+            font_path, name)
+        os.system( command )
 
 
 if __name__ == '__main__':
