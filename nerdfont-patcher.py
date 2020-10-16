@@ -24,6 +24,7 @@ def download_patcher():
 def download_src_fonts():
     ''' Downloads Glyph source files from the Nerd Fonts Repo '''
     with open("./font_names.txt", "r") as f:
+        print("Downloading glyph source fonts\n")
         for font_name in f.readlines():
             font_name = font_name.rstrip()
 
@@ -44,8 +45,17 @@ def main(folder, name):
     fonts = os.listdir(folder)
 
     # Loop over each item and patch the glyphs
-    for i, font in enumerate(fonts):
+    for i, _ in enumerate(fonts):
+
+        # If it's not a font, we don't want it
+        if not ["ttf", "otf"] in fonts[i]:
+            continue
+
+        # ¯\_(ツ)_/¯
         font_path = folder + os.sep + fonts[i]
+
+        # This will patch everything. Powerline, Weather FontAwesome... EVERYTHING!
+        # It takes a while to patch sh get a coffee and relax
         command = "fontforge -script font-patcher -s -w -c --no-progressbars --careful {} -out Patched/{}".format(
             font_path, name)
         os.system(
@@ -58,9 +68,8 @@ if __name__ == '__main__':
     arg_len = len(sys.argv)
 
     # We need two args
-    if arg_len == 2:
-        folders = sys.argv[1]
-        name = sys.argv[2]
+    if arg_len > 1:
+        folders, name = sys.argv[1:]
 
         # Create the src folder and download
         # all the font glyphs from the NerdFonts repo on first run
@@ -75,5 +84,6 @@ if __name__ == '__main__':
         # Start the patcher
         main(folders, name)
     else:
+        print("¯\_(ツ)_/¯")
         print("Almost did it..!\nI need two arguments. The Folder where the fonts are, and the name of the font to Patch")
         print("Like:\n  ${} ./Fonts/Agave Agave".format(sys.argv[0]))
