@@ -48,7 +48,7 @@ def main(folder, name):
         font_path = folder + os.sep + fonts[i]
         command = "fontforge -script font-patcher -s -w -c --no-progressbars --careful {} -out Patched/{}".format(
             font_path, name)
-        print(
+        os.system(
             command
         )
 
@@ -58,18 +58,17 @@ if __name__ == '__main__':
     arg_len = len(sys.argv)
 
     # We need two args
-    if arg_len > 1:
+    if arg_len == 2:
         folders = sys.argv[1]
         name = sys.argv[2]
 
-        # This should create the src folder and download
+        # Create the src folder and download
         # all the font glyphs from the NerdFonts repo on first run
         if not src_dir_exists():
             os.makedirs("./src/glyphs")
             download_src_fonts()
 
-        # This should also download the NerdFonts Patcher
-        # on first run
+        # Download the NerdFonts Patcher on first run
         if not patcher_exists():
             download_patcher()
 
