@@ -72,7 +72,7 @@ if __name__ == '__main__':
         folders, name = sys.argv[1:]
 
         # Create the src folder and download all the font glyphs from the NerdFonts repo on first run
-        if not dir_exists('src'):
+        if not dir_exists("src" + os.sep + "glyphs"):
             os.makedirs("src"+ os.sep +"glyphs")
             download_src_fonts()
 
