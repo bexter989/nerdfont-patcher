@@ -4,14 +4,14 @@ import os
 import sys
 
 
-def src_dir_exists():
-    ''' Bool: Checks if the src folder exists '''
-    return os.path.isdir("./src/glyphs")
+def dir_exists(folder):
+    ''' Bool: Checks if a folder exists '''
+    return os.path.isdir(folder)
 
 
 def patcher_exists():
     ''' Bool: Checks if the NerdFonts patcher script exists '''
-    return os.path.isfile("./font-patcher")
+    return os.path.isfile("font-patcher")
 
 
 def download_patcher():
@@ -23,7 +23,7 @@ def download_patcher():
 
 def download_src_fonts():
     ''' Downloads Glyph source files from the Nerd Fonts Repo '''
-    with open("./font_names.txt", "r") as f:
+    with open("font_names.txt", "r") as f:
         print("Downloading glyph source fonts\n")
         for font_name in f.readlines():
             font_name = font_name.rstrip()
@@ -39,7 +39,7 @@ def download_src_fonts():
             os.system(command)
 
 
-def main(folder, name):
+def patch(folder, name):
     ''' Font patching time! Go Drink a coffee. '''
     # Scan the folder passed in via script arg
     fonts = os.listdir(folder)
@@ -71,18 +71,21 @@ if __name__ == '__main__':
     if arg_len > 1:
         folders, name = sys.argv[1:]
 
-        # Create the src folder and download
-        # all the font glyphs from the NerdFonts repo on first run
-        if not src_dir_exists():
-            os.makedirs("./src/glyphs")
+        # Create the src folder and download all the font glyphs from the NerdFonts repo on first run
+        if not dir_exists('src'):
+            os.makedirs("src"+ os.sep +"glyphs")
             download_src_fonts()
+
+        # Create a folder based on the name param for the fonts
+        if not dir_exists('Patched' + os.sep + '{}'.format(name)):
+            os.makedirs('Patched' + os.sep + '{}'.format(name))
 
         # Download the NerdFonts Patcher on first run
         if not patcher_exists():
             download_patcher()
 
         # Start the patcher
-        main(folders, name)
+        patch(folders, name)
     else:
         print("¯\_(ツ)_/¯")
         print("Almost did it..!\nI need two arguments. The Folder where the fonts are, and the name of the font to Patch")
