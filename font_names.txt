@@ -1,0 +1,20 @@
+# Just copy and paste the names of the fonts from:
+# https://github.com/ryanoasis/nerd-fonts/tree/master/src/glyphs
+FontAwesome.otf
+NerdFontsSymbols 1000 EM Nerd Font Complete Blank.sfd
+NerdFontsSymbols 2048 EM Nerd Font Complete Blank.sfd
+Pomicons.otf
+PowerlineExtraSymbols.otf
+PowerlineSymbols.otf
+Symbols Template 1000 em.ttf
+Symbols Template 2048 em.ttf
+Symbols-1000-em Nerd Font Complete.ttf
+Symbols-2048-em Nerd Font Complete.ttf
+Unicode_IEC_symbol_font.otf
+devicons.ttf
+font-awesome-extension.ttf
+font-logos.ttf
+materialdesignicons-webfont.ttf
+octicons.ttf
+original-source.otf
+weathericons-regular-webfont.ttf
