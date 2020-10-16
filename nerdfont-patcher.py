@@ -49,7 +49,7 @@ def patch(folder, name):
     for i, _ in enumerate(fonts):
 
         # If it's not a font, we don't want it
-        if not ["ttf", "otf"] in fonts[i]:
+        if not ".ttf" or ".otf" in fonts[i]:
             continue
 
         # "¯\_(ツ)_/¯"
