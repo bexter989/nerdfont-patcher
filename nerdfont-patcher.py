@@ -13,7 +13,7 @@ def folder_exists(folder):
 
 def patcher_exists():
     ''' Bool: Checks if the NerdFonts patcher script exists '''
-    return os.path.isfile("font-patcher")
+    return os.path.isfile("./font-patcher")
 
 
 def download_patcher():
@@ -60,10 +60,10 @@ def patch(folder, name):
         # It takes a while to patch sh get a coffee and relax
 
         if platform == "linux" or platform == "linux2" or platform == "darwin":
-            command = "fontforge -script font-patcher -s -c --no-progressbars --careful {} -out Patched/{}".format(
+            command = "fontforge -script ./font-patcher -s -c --no-progressbars --careful {} -out Patched/{}".format(
                 font_path, name)
         else:
-            command = "fontforge -script font-patcher -s -w -c --no-progressbars --careful {} -out Patched/{}".format(
+            command = "fontforge -script .\\font-patcher -s -w -c --no-progressbars --careful {} -out Patched/{}".format(
                 font_path, name)
         os.system(
             command
@@ -79,13 +79,13 @@ if __name__ == '__main__':
         folders, name = sys.argv[1:]
 
         # Create the src folder and download all the font glyphs from the NerdFonts repo on first run
-        if not folder_exists("src" + os.sep + "glyphs"):
-            os.makedirs("src"+ os.sep +"glyphs")
+        if not folder_exists("." + os.sep + "src" + os.sep + "glyphs"):
+            os.makedirs("." + os.sep + "src" + os.sep + "glyphs")
             download_src_fonts()
 
         # Create a folder based on the name param for the fonts
-        if not folder_exists('Patched' + os.sep + '{}'.format(name)):
-            os.makedirs('Patched' + os.sep + '{}'.format(name))
+        if not folder_exists('.' + os.sep + 'Patched' + os.sep + '{}'.format(name)):
+            os.makedirs('.' + os.sep + 'Patched' + os.sep + '{}'.format(name))
 
         # Download the NerdFonts Patcher on first run
         if not patcher_exists():
