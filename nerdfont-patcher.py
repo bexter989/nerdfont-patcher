@@ -63,7 +63,7 @@ def patch(folder, name):
             command = "fontforge -script font-patcher -s -c --no-progressbars --careful {} -out Patched/{}".format(
                 font_path, name)
         else:
-            command = "fontforge-console -script font-patcher -s -w -c --no-progressbars --careful {} -out Patched/{}".format(
+            command = "fontforge -script font-patcher -s -w -c --no-progressbars --careful {} -out Patched/{}".format(
                 font_path, name)
         os.system(
             command
