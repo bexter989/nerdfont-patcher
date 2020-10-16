@@ -5,7 +5,7 @@ import os
 import sys
 
 
-def dir_exists(folder):
+def folder_exists(folder):
     ''' Bool: Checks if a folder exists '''
     return os.path.isdir(folder)
 
@@ -73,12 +73,12 @@ if __name__ == '__main__':
         folders, name = sys.argv[1:]
 
         # Create the src folder and download all the font glyphs from the NerdFonts repo on first run
-        if not dir_exists("src" + os.sep + "glyphs"):
+        if not folder_exists("src" + os.sep + "glyphs"):
             os.makedirs("src"+ os.sep +"glyphs")
             download_src_fonts()
 
         # Create a folder based on the name param for the fonts
-        if not dir_exists('Patched' + os.sep + '{}'.format(name)):
+        if not folder_exists('Patched' + os.sep + '{}'.format(name)):
             os.makedirs('Patched' + os.sep + '{}'.format(name))
 
         # Download the NerdFonts Patcher on first run
