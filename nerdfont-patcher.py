@@ -49,7 +49,7 @@ def patch(folder, name):
     for i, _ in enumerate(fonts):
 
         # If it's not a font, we don't want it
-        if not ".ttf" or ".otf" in fonts[i]:
+        if not ".ttf" or not ".otf" in fonts[i]:
             continue
 
         # Font path "¯\_(ツ)_/¯"
@@ -87,6 +87,9 @@ if __name__ == '__main__':
         # Start the patcher
         patch(folders, name)
     else:
-        print("¯\_(ツ)_/¯")
-        print("Almost did it..!\nI need two arguments. The Folder where the fonts are, and the name of the font to Patch")
-        print("Like:\n  ${} ./Fonts/Agave Agave".format(sys.argv[0]))
+        print("\n")
+        print("+------------------------------------------------------+")
+        print("| ¯\_(ツ)_/¯            Whoopss!                       |")
+        print("+------------------------------------------------------+\n")
+        print("Almost did it..! I need two arguments.\n\n1) The Folder where the fonts are, and\n2) The name of the font to Patch\n")
+        print("Like:\n > {} ./Fonts/Agave Agave\n\n".format(sys.argv[0]))
