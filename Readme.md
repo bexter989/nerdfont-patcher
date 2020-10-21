@@ -7,7 +7,7 @@ It's dumb, but it works! on Linux! "¯\\_(ツ)_/¯"
 ## Requirements
 
 - [Fontforge](https://fontforge.org/en-US/downloads/) (for patching the fonts)
-- Internet conection (for obvious reasons)
+- Internet connection (for obvious reasons)
 - curl (to download font glyphs)
 
 ## Setup
