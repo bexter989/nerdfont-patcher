@@ -1,14 +1,14 @@
 # NerdFont Patcher
 
 This is a hackish wrapper for the NerdFont patcher script.
+I dont know if there is an official way of doing this so...
 
-It's dumb, but it works! on Linux! "¯\\_(ツ)_/¯"
+It's dumb, but it works! on Linux! and WSL for windows 10 "¯\\_(ツ)_/¯"
 
 ## Requirements
 
 - [Fontforge](https://fontforge.org/en-US/downloads/) (for patching the fonts)
 - configparser
-- psMat
 - Internet connection (for obvious reasons)
 - curl (to download font glyphs)
 
