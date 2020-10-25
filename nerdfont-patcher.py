@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#TODO: Use threading to improve patching times
+# TODO: Use threading to improve patching times
 
 import os
 import sys
 import re
-
 
 
 def folder_exists(folder):
@@ -78,9 +77,12 @@ def patch(folder, name):
         # This will patch everything. Powerline, Weather icons, FontAwesome... EVERYTHING!
         # It takes a while to patch fonts so get a coffee while waiting. Oh! and the '-w 'switch is for
         # Windows compatibility.. Something about limiting the number of characters in the font name.
+        # More Info here:
+        # https://github.com/ryanoasis/nerd-fonts#option-8-patch-your-own-font
         print("Patching {}".format(fonts[i]))
-        command = "fontforge -script ." + os.sep + "font-patcher -s -q -w -c --no-progressbars --careful {} -out Patched" + os.sep + "{}".format(
-            font_path, name)
+        command = "fontforge -quiet -script ." + os.sep + \
+            "font-patcher -quiet -s -q -w -c --no-progressbars --careful {} -out Patched".format(
+                font_path) + os.sep + "{}".format(name)
         os.system(command)
 
 
