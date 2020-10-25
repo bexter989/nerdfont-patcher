@@ -7,6 +7,8 @@ It's dumb, but it works! on Linux! "¯\\_(ツ)_/¯"
 ## Requirements
 
 - [Fontforge](https://fontforge.org/en-US/downloads/) (for patching the fonts)
+- configparser
+- psMat
 - Internet connection (for obvious reasons)
 - curl (to download font glyphs)
 
@@ -21,6 +23,14 @@ It's dumb, but it works! on Linux! "¯\\_(ツ)_/¯"
 ```bash
 $ sudo apt install fontforge
 ```
+
+Python bindings
+
+```bash
+pip install --user fontforge configparser
+```
+
+Then:
 
 ```bash
 git clone https://github.com/bexter989/nerdfont-patcher.git
