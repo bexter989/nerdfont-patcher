@@ -79,10 +79,8 @@ def patch(folder, name):
         # Windows compatibility.. Something about limiting the number of characters in the font name.
         # More Info here:
         # https://github.com/ryanoasis/nerd-fonts#option-8-patch-your-own-font
-        print("Patching {}".format(fonts[i]))
-        command = "fontforge -quiet -script ." + os.sep + \
-            "font-patcher -quiet -s -q -w -c --no-progressbars --careful {} -out Patched".format(
-                font_path) + os.sep + "{}".format(name)
+        print("\nPatching {}".format(fonts[i]))
+        command = "fontforge -quiet -script ." + os.sep + "font-patcher -quiet -s -q -w -c --no-progressbars --careful {} -out Patched".format(font_path) + os.sep + "{}".format(name)
         os.system(command)
 
 
