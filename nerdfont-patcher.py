@@ -80,7 +80,7 @@ def patch(folder, name):
         # More Info here:
         # https://github.com/ryanoasis/nerd-fonts#option-8-patch-your-own-font
         print("\nPatching {}".format(fonts[i]))
-        command = "fontforge -quiet -script ." + os.sep + "font-patcher -quiet -s -q -w -c --no-progressbars --careful {} -out Patched".format(font_path) + os.sep + "{}".format(name)
+        command = "font-patcher -quiet -s -q -w -c --no-progressbars --careful {} -out Patched".format(font_path) + os.sep + "{}".format(name)
         os.system(command)
 
 
