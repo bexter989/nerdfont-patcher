@@ -3,6 +3,5 @@ Fonts/
 src/
 font-patcher
 .markdownlint.json
-renamer.py
 .vscode/
-DankMono/
+

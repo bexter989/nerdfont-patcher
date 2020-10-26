@@ -2,6 +2,7 @@
 
 This is a hackish wrapper for the NerdFont patcher script.
 I dont know if there is an official way of doing this so...
+Plus it now has multiprocess support to speed up font patching.
 
 It's dumb, but it works! on Linux! and WSL for windows 10 "¯\\_(ツ)_/¯"
 
@@ -21,7 +22,7 @@ It's dumb, but it works! on Linux! and WSL for windows 10 "¯\\_(ツ)_/¯"
   and patcher script from the NerdFonts repo and start patching.
 
 ```bash
-$ sudo apt install fontforge
+$ sudo apt install fontforge (python-fontforge python-configparser)
 ```
 
 Python bindings

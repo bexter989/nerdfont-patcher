@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# TODO: Use threading to improve patching times
 
 import os
 import sys
 import re
+import multiprocessing
+from time import time
 
 
 def folder_exists(folder):
@@ -44,6 +45,26 @@ def download_src_fonts():
             os.system(command)
 
 
+def split(xlist, cpu_count):
+    ''' Splits list of length n in x number of lists '''
+    k, m = divmod(len(xlist), cpu_count)
+    if list((xlist[i * k + min(i, m):(i + 1) * k + min(i + 1, m)] for i in range(cpu_count))) == [[], []]:
+        return []
+    return (xlist[i * k + min(i, m):(i + 1) * k + min(i + 1, m)] for i in range(cpu_count))
+
+
+def cpu_n(processes):
+    ''' Determines the number of cpu processes to use given the number of n '''
+    if (len(processes) % 2 == 0) and (len(processes) > 2):
+        return 4
+    elif (not len(processes) % 2 == 0) and (len(processes) == 1):
+        return 1
+    elif (not len(processes) % 2 == 0) and (len(processes) >= 5):
+        return 4
+    else:
+        return 2
+
+
 def fix_filenames_in(folder):
     ''' (ง '̀͜ '́ )ง Removes spaces from filenames within a folder '''
     # NOTE: Shorter signature from Core Kramer StackOverflow
@@ -57,22 +78,14 @@ def fix_filenames_in(folder):
         os.rename(old_filename, new_filename)
 
 
-def patch(folder, name):
-    ''' Font patching time! (•̀o•́)ง Go Drink a coffee. '''
-    # Scan the folder passed in via script arg
-    fix_filenames_in(folder)
-    fonts = os.listdir(folder)
+def blitzer():
+    pass
 
+
+def patch(fonts, name):
+    ''' Font patching time! (•̀o•́)ง Go Drink a coffee. '''
     # Loop over each item and patch the glyphs
     for i, _ in enumerate(fonts):
-
-        # If it's not a font, we don't want it
-        if (not "ttf" in fonts[i]) and (not "otf" in fonts[i]):
-            print("Not a font... Moving along")
-            continue
-
-        # Font path
-        font_path = folder + os.sep + fonts[i]
 
         # This will patch everything. Powerline, Weather icons, FontAwesome... EVERYTHING!
         # It takes a while to patch fonts so get a coffee while waiting. Oh! and the '-w 'switch is for
@@ -80,8 +93,9 @@ def patch(folder, name):
         # More Info here:
         # https://github.com/ryanoasis/nerd-fonts#option-8-patch-your-own-font
         print("\nPatching {}\n".format(fonts[i]))
-        command = "fontforge -quiet -script ." + os.sep + "font-patcher -q -s -w -c --no-progressbars {} -ext ttf -out Patched".format(font_path) + os.sep + "{}".format(name)
+        command = "fontforge -quiet -script ." + os.sep + "font-patcher -q -s -w -c --no-progressbars {} -ext ttf -out Patched".format(fonts[i]) + os.sep + "{}".format(name)
         os.system(command)
+
 
 
 if __name__ == '__main__':
@@ -90,6 +104,7 @@ if __name__ == '__main__':
 
     # We need two args
     if arg_len > 1:
+        processes = []
         font_folder, name = sys.argv[1:]
 
         # Create the src folder and download all the font glyphs from the NerdFonts repo on first run
@@ -105,9 +120,39 @@ if __name__ == '__main__':
         if not patcher_exists():
             download_patcher()
 
-        # Start the patcher
-        patch(font_folder, name)
+        # Scan the folder passed in via script arg
+        fix_filenames_in(font_folder)
+        fonts = os.listdir(font_folder)
+
+        # Get fonts only
+        fonts = [font_folder + os.sep + item for item in fonts if '.ttf' in item or '.otf' in item]
+
+        # Get num processes to use
+        cpus = cpu_n(fonts)
+
+        # Split list into smaller lists
+        groups = list(split(fonts, cpus))
+
+        # Real num of CPUs to use
+        cpu_num = len(groups)
+
+        # Multiprocessing
+        ts = time()
+        for i in range(cpu_num):
+            process = multiprocessing.Process(target=patch, args=(groups[i],name))
+            processes.append(process)
+            process.start()
+
+        for proc in processes:
+            proc.join()
+        te = time()-ts
+
+        # timer
+        os.system('clear')
         print("(⌐■_■) Done!")
+        print("Took {:.2f} seconds".format(te))
+        print('Fonts are in the Patched folder')
+        # patch(fonts, name)
     else:
         print("\n")
         print("+------------------------------------------------------+")
