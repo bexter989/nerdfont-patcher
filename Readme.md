@@ -46,5 +46,10 @@ chmod +x nerdfont-patcher.py
 ./nerdfont-patcher.py ./ttf VictorMono
 ```
 
+## Watch a clip
+
+Watch a 3 minute clip on [Youtube](https://youtu.be/ryKjZStHLtU)
+
+
 > [!NOTE]
 > Patched fonts are generated in the "Patched" folder under the font name you specified
