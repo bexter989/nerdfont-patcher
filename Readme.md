@@ -6,6 +6,12 @@ Plus it now has multiprocess support to speed up font patching.
 
 It's dumb, but it works! on Linux! and WSL for windows 10 "¯\\_(ツ)_/¯"
 
+## Greeting and Thanks
+
+A big hello and Thanks to the guys at [Nerdfonts.com](https://www.nerdfonts.com). They've
+done a wonderful job so thanks guys.
+
+
 ## Requirements
 
 - [Fontforge](https://fontforge.org/en-US/downloads/) (for patching the fonts)
@@ -22,13 +28,7 @@ It's dumb, but it works! on Linux! and WSL for windows 10 "¯\\_(ツ)_/¯"
   and patcher script from the NerdFonts repo and start patching.
 
 ```bash
-$ sudo apt install fontforge (python-fontforge python-configparser)
-```
-
-Python bindings
-
-```bash
-pip install --user fontforge configparser
+$ sudo apt install fontforge python-fontforge python-configparser
 ```
 
 Then:
