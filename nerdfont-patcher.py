@@ -93,7 +93,7 @@ def patch(fonts, name):
         # More Info here:
         # https://github.com/ryanoasis/nerd-fonts#option-8-patch-your-own-font
         print("\nPatching {}\n".format(fonts[i]))
-        command = "fontforge -quiet -script ." + os.sep + "font-patcher -q -s -w -c --no-progressbars {} -ext ttf -out Patched".format(fonts[i]) + os.sep + "{}".format(name)
+        command = "fontforge -quiet -script ." + os.sep + "font-patcher -q -s -c --no-progressbars {} -ext ttf -out Patched".format(fonts[i]) + os.sep + "{}".format(name)
         os.system(command)
 
 
