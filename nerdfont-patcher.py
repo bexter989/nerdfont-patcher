@@ -6,7 +6,7 @@ import sys
 import re
 import multiprocessing
 from time import time
-Script = "Nerd-font-patcher.py"
+Script = "Nerdfont-patcher.py"
 
 try:
     import psMat
