@@ -6,7 +6,25 @@ import sys
 import re
 import multiprocessing
 from time import time
+Script = "Nerd-font-patcher.py"
 
+try:
+    import psMat
+except ImportError:
+    sys.exit(Script + ": FontForge module is probably not installed. [See: http://designwithfontforge.com/en-US/Installing_Fontforge.html]")
+try:
+    import configparser
+except ImportError:
+    sys.exit(Script + ": configparser module is probably not installed. Try `pip install configparser` or equivalent")
+try:
+    import fontforge
+except ImportError:
+    sys.exit(
+        Script + (
+            ": FontForge module could not be loaded. Try installing fontforge python bindings "
+            "[e.g. on Linux Debian or Ubuntu: `sudo apt install fontforge python-fontforge`]"
+        )
+    )
 
 def folder_exists(folder):
     ''' Bool: Checks if a folder exists '''
